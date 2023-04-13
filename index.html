@@ -67,9 +67,9 @@
 		var rtlbase=`{"add":"rtl.hostgozar.store","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
 		inp=inp.replace("hostgozarr.com","hostgozar.store");inp=inp.replace("hostgozarr.com","hostgozar.store");inp=inp.replace("hostgozarr.com","hostgozar.store");
 		const tdata = JSON.parse(inp);
-		mcibase=mcibase.replace("mostafa",tdata.ps+" mci");
-		mtnbase=mtnbase.replace("mostafa",tdata.ps+" mtn");
-		rtlbase=rtlbase.replace("mostafa",tdata.ps+" rtl");
+		mcibase=mcibase.replace("mostafa",tdata.ps+"mci");
+		mtnbase=mtnbase.replace("mostafa",tdata.ps+"mtn");
+		rtlbase=rtlbase.replace("mostafa",tdata.ps+"rtl");
 		mcibase=mcibase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
 		mtnbase=mtnbase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
 		rtlbase=rtlbase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
