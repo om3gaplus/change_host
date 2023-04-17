@@ -37,10 +37,10 @@
 						<br>
 			<center><div id="mtn"></div></center>
 			<br>
-			<center><h3>rtl conecction</h3></center>
-						<center><button onclick="copyrtl()">Copy RTL link</button><center>
+			<center><h3>adsl conecction</h3></center>
+						<center><button onclick="copyadsl()">Copy RTL link</button><center>
 						<br>
-			<center><div id="rtl"></div></center>
+			<center><div id="adsl"></div></center>
 			<br>
 		</main>
 		<script>
@@ -62,32 +62,32 @@
 		inp=inp.replace("vmess://","");
 		inp=atob(inp);
 		if (!(inp.includes("downloader"))){
-		var mcibase=`{"add":"mci.hostgozar.store","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
-		var mtnbase=`{"add":"mtn.hostgozar.store","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
-		var rtlbase=`{"add":"rtl.hostgozar.store","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
-		inp=inp.replace("hostgozarr.com","hostgozar.store");inp=inp.replace("hostgozarr.com","hostgozar.store");inp=inp.replace("hostgozarr.com","hostgozar.store");
+		var mcibase=`{"add":"mci.hostgozar.space","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
+		var mtnbase=`{"add":"mtn.hostgozar.space","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
+		var adslbase=`{"add":"adsl.hostgozar.space","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
+		inp=inp.replace("hostgozar.store","hostgozar.space");inp=inp.replace("hostgozar.store","hostgozar.space");inp=inp.replace("hostgozar.store","hostgozar.space");
 		const tdata = JSON.parse(inp);
 		mcibase=mcibase.replace("mostafa",tdata.ps+"mci");
 		mtnbase=mtnbase.replace("mostafa",tdata.ps+"mtn");
-		rtlbase=rtlbase.replace("mostafa",tdata.ps+"rtl");
+		adslbase=adslbase.replace("mostafa",tdata.ps+"adsl");
 		mcibase=mcibase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
 		mtnbase=mtnbase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
-		rtlbase=rtlbase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
+		adslbase=adslbase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
 		mcibase=mcibase.replace("mainport",tdata.port);
 		mtnbase=mtnbase.replace("mainport",tdata.port);
-		rtlbase=rtlbase.replace("mainport",tdata.port);
+		adslbase=adslbase.replace("mainport",tdata.port);
 		mcibase=mcibase.replace("mainhost",tdata.add);
 		mtnbase=mtnbase.replace("mainhost",tdata.add);
-		rtlbase=rtlbase.replace("mainhost",tdata.add);
+		adslbase=adslbase.replace("mainhost",tdata.add);
 		mcibase=mcibase.replace("snihost",randsni+tdata.add);
 		mtnbase=mtnbase.replace("snihost",randsni+tdata.add);
-		rtlbase=rtlbase.replace("snihost",randsni+tdata.add);
+		adslbase=adslbase.replace("snihost",randsni+tdata.add);
 			var mci = new QRCode("mci",
 			"vmess://"+btoa(mcibase));
 		var mtn = new QRCode("mtn",
 			"vmess://"+btoa(mtnbase));
-		var rtl = new QRCode("rtl",
-			"vmess://"+btoa(rtlbase));
+		var adsl = new QRCode("adsl",
+			"vmess://"+btoa(adslbase));
 function copymci(){
 	var inp =document.createElement('input');
 	document.body.appendChild(inp)
@@ -104,10 +104,10 @@ function copymci(){
 	document.execCommand('copy',false);
 	inp.remove();
 	}
-	function copyrtl(){
+	function copyadsl(){
 	var inp =document.createElement('input');
 	document.body.appendChild(inp)
-	inp.value ="vmess://"+btoa(rtlbase)
+	inp.value ="vmess://"+btoa(adslbase)
 	inp.select();
 	document.execCommand('copy',false);
 	inp.remove();
@@ -116,20 +116,20 @@ function copymci(){
 if ((inp.includes("downloader"))){
 		var mcibase=inp;
 		var mtnbase=inp;
-		var rtlbase=inp;
+		var adslbase=inp;
 		const tdata = JSON.parse(inp);
-		mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("rtl","mci");mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("rtl","mci");
-		mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("rtl","mtn");mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("rtl","mtn");
-		rtlbase=rtlbase.replace("mci","rtl");rtlbase=rtlbase.replace("mtn","rtl");rtlbase=rtlbase.replace("rtl","rtl");rtlbase=rtlbase.replace("mci","rtl");rtlbase=rtlbase.replace("mtn","rtl");rtlbase=rtlbase.replace("rtl","rtl");
-		mcibase=mcibase.replace("hostgozarr.com","hostgozar.store");mcibase=mcibase.replace("hostgozarr.com","hostgozar.store");mcibase=mcibase.replace("hostgozarr.com","hostgozar.store");
-		mtnbase=mtnbase.replace("hostgozarr.com","hostgozar.store");mtnbase=mtnbase.replace("hostgozarr.com","hostgozar.store");mtnbase=mtnbase.replace("hostgozarr.com","hostgozar.store");
-		rtlbase=rtlbase.replace("hostgozarr.com","hostgozar.store");rtlbase=rtlbase.replace("hostgozarr.com","hostgozar.store");rtlbase=rtlbase.replace("hostgozarr.com","hostgozar.store");
+		mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("adsl","mci");mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("adsl","mci");
+		mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("adsl","mtn");mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("adsl","mtn");
+		adslbase=adslbase.replace("mci","adsl");adslbase=adslbase.replace("mtn","adsl");adslbase=adslbase.replace("adsl","adsl");adslbase=adslbase.replace("mci","adsl");adslbase=adslbase.replace("mtn","adsl");adslbase=adslbase.replace("adsl","adsl");
+		mcibase=mcibase.replace("hostgozar.store","hostgozar.space");mcibase=mcibase.replace("hostgozar.store","hostgozar.space");mcibase=mcibase.replace("hostgozar.store","hostgozar.space");
+		mtnbase=mtnbase.replace("hostgozar.store","hostgozar.space");mtnbase=mtnbase.replace("hostgozar.store","hostgozar.space");mtnbase=mtnbase.replace("hostgozar.store","hostgozar.space");
+		adslbase=adslbase.replace("hostgozar.store","hostgozar.space");adslbase=adslbase.replace("hostgozar.store","hostgozar.space");adslbase=adslbase.replace("hostgozar.store","hostgozar.space");
 			var mci = new QRCode("mci",
 			"vmess://"+btoa(mcibase));
 		var mtn = new QRCode("mtn",
 			"vmess://"+btoa(mtnbase));
-		var rtl = new QRCode("rtl",
-			"vmess://"+btoa(rtlbase));
+		var adsl = new QRCode("adsl",
+			"vmess://"+btoa(adslbase));
 function copymci(){
 	var inp =document.createElement('input');
 	document.body.appendChild(inp)
@@ -146,10 +146,10 @@ function copymci(){
 	document.execCommand('copy',false);
 	inp.remove();
 	}
-	function copyrtl(){
+	function copyadsl(){
 	var inp =document.createElement('input');
 	document.body.appendChild(inp)
-	inp.value ="vmess://"+btoa(rtlbase)
+	inp.value ="vmess://"+btoa(adslbase)
 	inp.select();
 	document.execCommand('copy',false);
 	inp.remove();
@@ -161,10 +161,13 @@ function copymci(){
 		
 		
 		if (inp.includes("vless://")) {if (!(inp.includes("downloader"))){
-		inp=inp.replace("hostgozarr.com","hostgozar.store");inp=inp.replace("hostgozarr.com","hostgozar.store");inp=inp.replace("hostgozarr.com","hostgozar.store");
-		var mcibase="vless://mainuid@mci.hostgozar.store:443?path=%2Fdownloader%2Fmainport&security=tls&encryption=none&host=mainhost&type=ws&sni=snihost#mainname";
-		var mtnbase="vless://mainuid@mtn.hostgozar.store:443?path=%2Fdownloader%2Fmainport&security=tls&encryption=none&host=mainhost&type=ws&sni=snihost#mainname";
-		var rtlbase="vless://mainuid@rtl.hostgozar.store:443?path=%2Fdownloader%2Fmainport&security=tls&encryption=none&host=mainhost&type=ws&sni=snihost#mainname";
+		inp=inp.replace("hostgozar.store","hostgozar.space");inp=inp.replace("hostgozar.store","hostgozar.space");inp=inp.replace("hostgozar.store","hostgozar.space");
+		var mcibase="dmxlc3M6Ly9tYWludWlkQG1jaS5ob3N0Z296YXIuc3BhY2U6NDQzP3BhdGg9JTJGZG93bmxvYWRlciUyRm1haW5wb3J0JnNlY3VyaXR5PXRscyZlbmNyeXB0aW9uPW5vbmUmaG9zdD1tYWluaG9zdCZ0eXBlPXdzJnNuaT1zbmlob3N0I21haW5uYW1l";
+		var mtnbase="dmxlc3M6Ly9tYWludWlkQG10bi5ob3N0Z296YXIuc3BhY2U6NDQzP3BhdGg9JTJGZG93bmxvYWRlciUyRm1haW5wb3J0JnNlY3VyaXR5PXRscyZlbmNyeXB0aW9uPW5vbmUmaG9zdD1tYWluaG9zdCZ0eXBlPXdzJnNuaT1zbmlob3N0I21haW5uYW1l";
+		var adslbase="dmxlc3M6Ly9tYWludWlkQGFkc2wuaG9zdGdvemFyLnNwYWNlOjQ0Mz9wYXRoPSUyRmRvd25sb2FkZXIlMkZtYWlucG9ydCZzZWN1cml0eT10bHMmZW5jcnlwdGlvbj1ub25lJmhvc3Q9bWFpbmhvc3QmdHlwZT13cyZzbmk9c25paG9zdCNtYWlubmFtZQ==";
+		mcibase=atob(mcibase);
+		mtnbase=atob(mtnbase);
+		adslbase=atob(adslbase);
 		var reuid= new RegExp("vless://(.*)?@");
 		var rehost= new RegExp("vless://.*?@(.*)?:");
 		var report= new RegExp("vless://.*?@.*?:([0-9]{2,5})");
@@ -175,25 +178,25 @@ function copymci(){
 		
 		mcibase=mcibase.replace("mainname",inp.match(rename)[1]+"%20mci");
 		mtnbase=mtnbase.replace("mainname",inp.match(rename)[1]+"%20mtn");
-		rtlbase=rtlbase.replace("mainname",inp.match(rename)[1]+"%20rtl");
+		adslbase=adslbase.replace("mainname",inp.match(rename)[1]+"%20adsl");
 		mcibase=mcibase.replace("mainuid",inp.match(reuid)[1]);
 		mtnbase=mtnbase.replace("mainuid",inp.match(reuid)[1]);
-		rtlbase=rtlbase.replace("mainuid",inp.match(reuid)[1]);
+		adslbase=adslbase.replace("mainuid",inp.match(reuid)[1]);
 		mcibase=mcibase.replace("mainport",inp.match(report)[1]);
 		mtnbase=mtnbase.replace("mainport",inp.match(report)[1]);
-		rtlbase=rtlbase.replace("mainport",inp.match(report)[1]);
+		adslbase=adslbase.replace("mainport",inp.match(report)[1]);
 		mcibase=mcibase.replace("mainhost",inp.match(rehost)[1]);
 		mtnbase=mtnbase.replace("mainhost",inp.match(rehost)[1]);
-		rtlbase=rtlbase.replace("mainhost",inp.match(rehost)[1]);
+		adslbase=adslbase.replace("mainhost",inp.match(rehost)[1]);
 		mcibase=mcibase.replace("snihost",randsni+inp.match(rehost)[1]);
 		mtnbase=mtnbase.replace("snihost",randsni+inp.match(rehost)[1]);
-		rtlbase=rtlbase.replace("snihost",randsni+inp.match(rehost)[1]);
+		adslbase=adslbase.replace("snihost",randsni+inp.match(rehost)[1]);
 		
 	//++++++++++++++++++++++++++++++++++++++++++
 	
 		var mci = new QRCode("mci",mcibase);
 		var mtn = new QRCode("mtn",mtnbase);
-		var rtl = new QRCode("rtl",rtlbase);
+		var adsl = new QRCode("adsl",adslbase);
 function copymci(){
 	var inp =document.createElement('input');
 	document.body.appendChild(inp);
@@ -210,10 +213,10 @@ function copymci(){
 	document.execCommand('copy',false);
 	inp.remove();
 	}
-	function copyrtl(){
+	function copyadsl(){
 	var inp =document.createElement('input');
 	document.body.appendChild(inp)
-	inp.value =rtlbase;
+	inp.value =adslbase;
 	inp.select();
 	document.execCommand('copy',false);
 	inp.remove();
@@ -222,7 +225,7 @@ function copymci(){
 		if (inp.includes("vless://")) { if (inp.includes("downloader")){
 		var mcibase=inp;
 		var mtnbase=inp;
-		var rtlbase=inp;
+		var adslbase=inp;
 		var reuid= new RegExp("vless://(.*)?@");
 		var rehost= new RegExp("vless://.*?@(.*)?:");
 		var report= new RegExp("vless://.*?@.*?:([0-9]{2,5})");
@@ -233,25 +236,25 @@ function copymci(){
 		
 		//mcibase=mcibase.replace("mainname",inp.match(rename)[1]+"%20mci");
 		//mtnbase=mtnbase.replace("mainname",inp.match(rename)[1]+"%20mtn");
-		//rtlbase=rtlbase.replace("mainname",inp.match(rename)[1]+"%20rtl");
+		//adslbase=adslbase.replace("mainname",inp.match(rename)[1]+"%20adsl");
 		//mcibase=mcibase.replace("mainuid",inp.match(reuid)[1]);
 		//mtnbase=mtnbase.replace("mainuid",inp.match(reuid)[1]);
-		//rtlbase=rtlbase.replace("mainuid",inp.match(reuid)[1]);
-		mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("rtl","mci");mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("rtl","mci");
-		mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("rtl","mtn");mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("rtl","mtn");
-		rtlbase=rtlbase.replace("mci","rtl");rtlbase=rtlbase.replace("mtn","rtl");rtlbase=rtlbase.replace("rtl","rtl");rtlbase=rtlbase.replace("mci","rtl");rtlbase=rtlbase.replace("mtn","rtl");rtlbase=rtlbase.replace("rtl","rtl");
-		mcibase=mcibase.replace("hostgozarr.com","hostgozar.store");mcibase=mcibase.replace("hostgozarr.com","hostgozar.store");mcibase=mcibase.replace("hostgozarr.com","hostgozar.store");
-		mtnbase=mtnbase.replace("hostgozarr.com","hostgozar.store");mtnbase=mtnbase.replace("hostgozarr.com","hostgozar.store");mtnbase=mtnbase.replace("hostgozarr.com","hostgozar.store");
-		rtlbase=rtlbase.replace("hostgozarr.com","hostgozar.store");rtlbase=rtlbase.replace("hostgozarr.com","hostgozar.store");rtlbase=rtlbase.replace("hostgozarr.com","hostgozar.store");
+		//adslbase=adslbase.replace("mainuid",inp.match(reuid)[1]);
+		mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("adsl","mci");mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("adsl","mci");
+		mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("adsl","mtn");mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("adsl","mtn");
+		adslbase=adslbase.replace("mci","adsl");adslbase=adslbase.replace("mtn","adsl");adslbase=adslbase.replace("adsl","adsl");adslbase=adslbase.replace("mci","adsl");adslbase=adslbase.replace("mtn","adsl");adslbase=adslbase.replace("adsl","adsl");
+		mcibase=mcibase.replace("hostgozar.store","hostgozar.space");mcibase=mcibase.replace("hostgozar.store","hostgozar.space");mcibase=mcibase.replace("hostgozar.store","hostgozar.space");
+		mtnbase=mtnbase.replace("hostgozar.store","hostgozar.space");mtnbase=mtnbase.replace("hostgozar.store","hostgozar.space");mtnbase=mtnbase.replace("hostgoza.store","hostgozar.space");
+  adslbase=adslbase.replace("hostgozar.store","hostgozar.space");adslbase=adslbase.replace("hostgozar.store","hostgozar.space");adslbase=adslbase.replace("hostgoza.store","hostgozar.space");
 		mcibase=mcibase.replace("sni=","sni="+randsni);
 		mtnbase=mtnbase.replace("sni=","sni="+randsni);
-		rtlbase=rtlbase.replace("sni=","sni="+randsni);
+		adslbase=adslbase.replace("sni=","sni="+randsni);
 		
 	//++++++++++++++++++++++++++++++++++++++++++
 	
 		var mci = new QRCode("mci",mcibase);
 		var mtn = new QRCode("mtn",mtnbase);
-		var rtl = new QRCode("rtl",rtlbase);
+		var adsl = new QRCode("adsl",adslbase);
 function copymci(){
 	var inp =document.createElement('input');
 	document.body.appendChild(inp);
@@ -268,10 +271,10 @@ function copymci(){
 	document.execCommand('copy',false);
 	inp.remove();
 	}
-	function copyrtl(){
+	function copyadsl(){
 	var inp =document.createElement('input');
 	document.body.appendChild(inp)
-	inp.value =rtlbase;
+	inp.value =adslbase;
 	inp.select();
 	document.execCommand('copy',false);
 	inp.remove();
