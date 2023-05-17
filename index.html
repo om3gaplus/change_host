@@ -175,7 +175,7 @@ inp.remove();
 	var rename=new RegExp("vless://.*?@.*?:[0-9]{2,5}.*#(.*)");
 	
 	//===========================================================
-document.getElementById("sublink").innerHTML = sub_addr+"uid="+inp.match(reuid)[1]+"&sport="+inp.match(report)[1]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=vless&client=v2ray&name="+inp.match(rename)[1];
+document.getElementById("sublink").innerHTML = sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[3]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=vless&client=v2ray&name="+inp.match(rename)[1];
 	
 	mcibase=mcibase.replace("mainname",inp.match(rename)[1]+"%20mci");
 	mtnbase=mtnbase.replace("mainname",inp.match(rename)[1]+"%20mtn");
