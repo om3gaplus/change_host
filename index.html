@@ -83,6 +83,8 @@ var randsni=generateString(90);
 	mcibase=mcibase.replace("snihost",randsni+tdata.add);
 	mtnbase=mtnbase.replace("snihost",randsni+tdata.add);
 	adslbase=adslbase.replace("snihost",randsni+tdata.add);
+	document.getElementById("sublink").innerHTML = sub_addr+"uid="+tdata.id+"&p1="+tdata.add.split(".")[1]+"&sport="+tdata.port+"&p2="+tdata.add.split(".")[2]+"&nport=443&saddr="+tdata.add.split(".")[0]+"&spath=downloader&type=vmess&client=v2ray&name="+encodeURIComponent(tdata.ps);
+
 		var mci = new QRCode("mci",
 		"vmess://"+btoa(mcibase));
 	var mtn = new QRCode("mtn",
@@ -175,7 +177,7 @@ inp.remove();
 	var rename=new RegExp("vless://.*?@.*?:[0-9]{2,5}.*#(.*)");
 	
 	//===========================================================
-document.getElementById("sublink").innerHTML = sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[2]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=vless&client=v2ray&name="+inp.match(rename)[1];
+document.getElementById("sublink").innerHTML = sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[2]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=vless&client=v2ray&name="+encodeURIComponent(inp.match(rename)[1]);
 	
 	mcibase=mcibase.replace("mainname",inp.match(rename)[1]+"%20mci");
 	mtnbase=mtnbase.replace("mainname",inp.match(rename)[1]+"%20mtn");
@@ -233,6 +235,19 @@ inp.remove();
 	var rename=new RegExp("vless://.*?@.*?:[0-9]{2,5}.*#(.*)");
 	
 	//===========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+	//==============================================================
 	
 	
 	//mcibase=mcibase.replace("mainname",inp.match(rename)[1]+"%20mci");
@@ -281,6 +296,68 @@ document.execCommand('copy',false);
 inp.remove();
 }
 	}}
+	if (inp.includes("trojan://")) {if (!(inp.includes("downloader"))){
+		inp=inp.replace("hostgozar.space","lil-hero.space");inp=inp.replace("hostgozar.space","lil-hero.space");inp=inp.replace("hostgozar.space","lil-hero.space");
+		var mcibase="dHJvamFuOi8vbWFpbnVpZEBtY2kubGlsLWhlcm8uc3BhY2U6NDQzP3BhdGg9JTJGZG93bmxvYWRlciUyRm1haW5wb3J0JnNlY3VyaXR5PXRscyZlbmNyeXB0aW9uPW5vbmUmaG9zdD1tYWluaG9zdCZ0eXBlPXdzJnNuaT1zbmlob3N0I21haW5uYW1l";
+		var mtnbase="dHJvamFuOi8vbWFpbnVpZEBtdG4ubGlsLWhlcm8uc3BhY2U6NDQzP3BhdGg9JTJGZG93bmxvYWRlciUyRm1haW5wb3J0JnNlY3VyaXR5PXRscyZlbmNyeXB0aW9uPW5vbmUmaG9zdD1tYWluaG9zdCZ0eXBlPXdzJnNuaT1zbmlob3N0I21haW5uYW1l";
+		var adslbase="dHJvamFuOi8vbWFpbnVpZEBhZHNsLmxpbC1oZXJvLnNwYWNlOjQ0Mz9wYXRoPSUyRmRvd25sb2FkZXIlMkZtYWlucG9ydCZzZWN1cml0eT10bHMmZW5jcnlwdGlvbj1ub25lJmhvc3Q9bWFpbmhvc3QmdHlwZT13cyZzbmk9c25paG9zdCNtYWlubmFtZQ==";
+		mcibase=atob(mcibase);
+		mtnbase=atob(mtnbase);
+		adslbase=atob(adslbase);
+		var reuid= new RegExp("trojan://(.*)?@");
+		var rehost= new RegExp("trojan://.*?@(.*)?:");
+		var report= new RegExp("trojan://.*?@.*?:([0-9]{2,5})");
+		var rename=new RegExp("trojan://.*?@.*?:[0-9]{2,5}.*#(.*)");
+		
+		//===========================================================
+	document.getElementById("sublink").innerHTML = sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[2]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=trojan&client=v2ray&name="+encodeURIComponent(inp.match(rename)[1]);
+		
+		mcibase=mcibase.replace("mainname",inp.match(rename)[1]+"%20mci");
+		mtnbase=mtnbase.replace("mainname",inp.match(rename)[1]+"%20mtn");
+		adslbase=adslbase.replace("mainname",inp.match(rename)[1]+"%20adsl");
+		mcibase=mcibase.replace("mainuid",inp.match(reuid)[1]);
+		mtnbase=mtnbase.replace("mainuid",inp.match(reuid)[1]);
+		adslbase=adslbase.replace("mainuid",inp.match(reuid)[1]);
+		mcibase=mcibase.replace("mainport",inp.match(report)[1]);
+		mtnbase=mtnbase.replace("mainport",inp.match(report)[1]);
+		adslbase=adslbase.replace("mainport",inp.match(report)[1]);
+		mcibase=mcibase.replace("mainhost",inp.match(rehost)[1]);
+		mtnbase=mtnbase.replace("mainhost",inp.match(rehost)[1]);
+		adslbase=adslbase.replace("mainhost",inp.match(rehost)[1]);
+		mcibase=mcibase.replace("snihost",randsni+inp.match(rehost)[1]);
+		mtnbase=mtnbase.replace("snihost",randsni+inp.match(rehost)[1]);
+		adslbase=adslbase.replace("snihost",randsni+inp.match(rehost)[1]);
+		
+	//++++++++++++++++++++++++++++++++++++++++++
+	
+		var mci = new QRCode("mci",mcibase);
+		var mtn = new QRCode("mtn",mtnbase);
+		var adsl = new QRCode("adsl",adslbase);
+	function copymci(){
+	var inp =document.createElement('input');
+	document.body.appendChild(inp);
+	inp.value =mcibase;
+	inp.select();
+	document.execCommand('copy',false);
+	inp.remove();
+	}
+	function copymtn(){
+	var inp =document.createElement('input');
+	document.body.appendChild(inp);
+	inp.value =mtnbase;
+	inp.select();
+	document.execCommand('copy',false);
+	inp.remove();
+	}
+	function copyadsl(){
+	var inp =document.createElement('input');
+	document.body.appendChild(inp)
+	inp.value =adslbase;
+	inp.select();
+	document.execCommand('copy',false);
+	inp.remove();
+	}
+		}}
 	</script>
 </body>
  
