@@ -28,6 +28,11 @@
 <body>
 	<main>
 		<p1 id="sublink"></p1>
+        <center><h3>sub link</h3></center>
+	<center><button onclick="copysub()">Copy sub link</button><center>
+	<br>
+		<center><div id="sub"></div></center>
+		<br>
 	<center><h3>mci conecction</h3></center>
 	<center><button onclick="copymci()">Copy MCI link</button><center>
 	<br>
@@ -84,13 +89,23 @@ var randsni=generateString(90);
 	mtnbase=mtnbase.replace("snihost",randsni+tdata.add);
 	adslbase=adslbase.replace("snihost",randsni+tdata.add);
 	document.getElementById("sublink").innerHTML = sub_addr+"uid="+tdata.id+"&p1="+tdata.add.split(".")[1]+"&sport="+tdata.port+"&p2="+tdata.add.split(".")[2]+"&nport=443&saddr="+tdata.add.split(".")[0]+"&spath=downloader&type=vmess&client=v2ray&name="+encodeURIComponent(tdata.ps);
-
 		var mci = new QRCode("mci",
 		"vmess://"+btoa(mcibase));
 	var mtn = new QRCode("mtn",
 		"vmess://"+btoa(mtnbase));
 	var adsl = new QRCode("adsl",
 		"vmess://"+btoa(adslbase));
+var sub_link=sub_addr+"uid="+tdata.id+"&p1="+tdata.add.split(".")[1]+"&sport="+tdata.port+"&p2="+tdata.add.split(".")[2]+"&nport=443&saddr="+tdata.add.split(".")[0]+"&spath=downloader&type=vmess&client=v2ray&name="+encodeURIComponent(tdata.ps);
+console.log(sub_link);        
+var sub=new QRCode("sub",sub_link);
+function copysub(){
+var inp =document.createElement('input');
+document.body.appendChild(inp)
+inp.value =sub_link;
+inp.select();
+document.execCommand('copy',false);
+inp.remove();
+}
 function copymci(){
 var inp =document.createElement('input');
 document.body.appendChild(inp)
@@ -196,10 +211,20 @@ document.getElementById("sublink").innerHTML = sub_addr+"uid="+inp.match(reuid)[
 	adslbase=adslbase.replace("snihost",randsni+inp.match(rehost)[1]);
 	
 //++++++++++++++++++++++++++++++++++++++++++
-
 	var mci = new QRCode("mci",mcibase);
 	var mtn = new QRCode("mtn",mtnbase);
 	var adsl = new QRCode("adsl",adslbase);
+var sub_link=sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[2]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=vless&client=v2ray&name="+encodeURIComponent(inp.match(rename)[1]);
+    console.log(sub_link);        
+var sub=new QRCode("sub",sub_link+"                                                                                          ");
+function copysub(){
+var inp =document.createElement('input');
+document.body.appendChild(inp)
+inp.value =sub_link;
+inp.select();
+document.execCommand('copy',false);
+inp.remove();
+}
 function copymci(){
 var inp =document.createElement('input');
 document.body.appendChild(inp);
@@ -329,7 +354,17 @@ inp.remove();
 		adslbase=adslbase.replace("snihost",randsni+inp.match(rehost)[1]);
 		
 	//++++++++++++++++++++++++++++++++++++++++++
-	
+        var sub_link=sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[2]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=trojan&client=v2ray&name="+encodeURIComponent(inp.match(rename)[1]);
+        console.log(sub_link);        
+var sub=new QRCode("sub",sub_link+"                                                                                          ");
+function copysub(){
+var inp =document.createElement('input');
+document.body.appendChild(inp)
+inp.value =sub_link;
+inp.select();
+document.execCommand('copy',false);
+inp.remove();
+}
 		var mci = new QRCode("mci",mcibase);
 		var mtn = new QRCode("mtn",mtnbase);
 		var adsl = new QRCode("adsl",adslbase);
