@@ -1,244 +1,226 @@
-
 <!DOCTYPE html>
 <html lang="en">
- 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport"
-		 content="width=device-width,
-						initial-scale=1.0" />
-	<title>QR Code Generator</title>
-	
-	<style>
-		h1, h3 {
-		  color: green;
-		}
-		body, header {
-		  display: flex;
-		  flex-direction: column;
-		  justify-content: center;
-		  align-items: center;
-		}
-	</style>
-	<script src=
-"https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
-	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .currency-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .currency-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .currency-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .currency-name {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .currency-persian {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .currency-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .price-change {
+            text-align: right;
+            font-size: 0.9em;
+        }
+
+        .price-change.positive {
+            color: #22c55e;
+        }
+
+        .price-change.negative {
+            color: #ef4444;
+        }
+
+        .currency-selector {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            height: 400px;
+        }
+    </style>
 </head>
- 
 <body>
-	<main>
-		<p1 id="sublink"></p1>
-        <center><h3>sub link</h3></center>
-	<center><button onclick="copysub()">Copy sub link</button><center>
-	<br>
-		<center><div id="sub"></div></center>
-		<br>
-	</main>
-	<script>
-//var inp = prompt("input the copyed vmees code");
-const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-var sub_addr="https://sub.hhere-i-am.tech/?"
-function generateString(length) {
-	let result = '';
-	const charactersLength = characters.length;
-	for ( let i = 0; i < length; i++ ) {
-		result += characters.charAt(Math.floor(Math.random() * charactersLength));
-	}
+    <div class="container">
+        <div class="currency-grid" id="currencyGrid"></div>
+        <select class="currency-selector" id="currencySelector"></select>
+        <div class="chart-container">
+            <canvas id="priceChart"></canvas>
+        </div>
+    </div>
 
-	return result;
-}
-var inp = prompt("input the copyed vmees code");
-var randsni=generateString(90);
-	if (inp.includes("vmess://")){
-	inp=inp.replace("vmess://","");
-	inp=atob(inp);
-	if (!(inp.includes("downloader"))){
-	var mcibase=`{"add":"mci.lil-hero.space","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
-	var mtnbase=`{"add":"mtn.lil-hero.space","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
-	var adslbase=`{"add":"adsl.lil-hero.space","aid":"0","alpn":"","host":"mainhost","id":"e2440fba-21f0-4b45-8dee-6f165132e646","net":"ws","path":"/downloader/mainport","port":"443","ps":"mostafa","scy":"auto","sni":"snihost","tls":"tls","type":"","v":"2"}`;
-	inp=inp.replace("hostgozar.space","lil-hero.space");inp=inp.replace("hostgozar.space","lil-hero.space");inp=inp.replace("hostgozar.space","lil-hero.space");
-	const tdata = JSON.parse(inp);
-	mcibase=mcibase.replace("mostafa",tdata.ps+"mci");
-	mtnbase=mtnbase.replace("mostafa",tdata.ps+"mtn");
-	adslbase=adslbase.replace("mostafa",tdata.ps+"adsl");
-	mcibase=mcibase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
-	mtnbase=mtnbase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
-	adslbase=adslbase.replace("e2440fba-21f0-4b45-8dee-6f165132e646",tdata.id);
-	mcibase=mcibase.replace("mainport",tdata.port);
-	mtnbase=mtnbase.replace("mainport",tdata.port);
-	adslbase=adslbase.replace("mainport",tdata.port);
-	mcibase=mcibase.replace("mainhost",tdata.add);
-	mtnbase=mtnbase.replace("mainhost",tdata.add);
-	adslbase=adslbase.replace("mainhost",tdata.add);
-	mcibase=mcibase.replace("snihost",randsni+tdata.add);
-	mtnbase=mtnbase.replace("snihost",randsni+tdata.add);
-	adslbase=adslbase.replace("snihost",randsni+tdata.add);
-	document.getElementById("sublink").innerHTML = sub_addr+"uid="+tdata.id+"&p1="+tdata.add.split(".")[1]+"&sport="+tdata.port+"&p2="+tdata.add.split(".")[2]+"&nport=443&saddr="+tdata.add.split(".")[0]+"&spath=downloader&type=vmess&client=v2ray&name="+encodeURIComponent(tdata.ps);
-var sub_link=sub_addr+"uid="+tdata.id+"&p1="+tdata.add.split(".")[1]+"&sport="+tdata.port+"&p2="+tdata.add.split(".")[2]+"&nport=443&saddr="+tdata.add.split(".")[0]+"&spath=downloader&type=vmess&client=v2ray&name="+encodeURIComponent(tdata.ps);
-console.log(sub_link);        
-var sub=new QRCode("sub",sub_link+"                                                                                                                    ");
-function copysub(){
-var inp =document.createElement('input');
-document.body.appendChild(inp)
-inp.value =sub_link;
-inp.select();
-document.execCommand('copy',false);
-inp.remove();
-}
-}
-if ((inp.includes("downloader"))){
-	var mcibase=inp;
-	var mtnbase=inp;
-	var adslbase=inp;
-	const tdata = JSON.parse(inp);
-	mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("adsl","mci");mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("adsl","mci");
-	mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("adsl","mtn");mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("adsl","mtn");
-	adslbase=adslbase.replace("mci","adsl");adslbase=adslbase.replace("mtn","adsl");adslbase=adslbase.replace("adsl","adsl");adslbase=adslbase.replace("mci","adsl");adslbase=adslbase.replace("mtn","adsl");adslbase=adslbase.replace("adsl","adsl");
-	mcibase=mcibase.replace("hostgozar.space","lil-hero.space");mcibase=mcibase.replace("hostgozar.space","lil-hero.space");mcibase=mcibase.replace("hostgozar.space","lil-hero.space");
-	mtnbase=mtnbase.replace("hostgozar.space","lil-hero.space");mtnbase=mtnbase.replace("hostgozar.space","lil-hero.space");mtnbase=mtnbase.replace("hostgozar.space","lil-hero.space");
-	adslbase=adslbase.replace("hostgozar.space","lil-hero.space");adslbase=adslbase.replace("hostgozar.space","lil-hero.space");adslbase=adslbase.replace("hostgozar.space","lil-hero.space");
+    <script>
+        let chart = null;
+        let currencyData = [];
 
+        async function fetchData() {
+            try {
+                const response = await fetch('https://hansha.online/latest');
+                currencyData = await response.json();
+                updateDashboard();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
 
-}}
+        function formatNumber(num) {
+            return num.toLocaleString();
+        }
 
-	
-	
-	if (inp.includes("vless://")) {if (!(inp.includes("downloader"))){
-	inp=inp.replace("hostgozar.space","lil-hero.space");inp=inp.replace("hostgozar.space","lil-hero.space");inp=inp.replace("hostgozar.space","lil-hero.space");
-	var mcibase="dmxlc3M6Ly9tYWludWlkQG1jaS5saWwtaGVyby5zcGFjZTo0NDM/cGF0aD0lMkZkb3dubG9hZGVyJTJGbWFpbnBvcnQmc2VjdXJpdHk9dGxzJmVuY3J5cHRpb249bm9uZSZob3N0PW1haW5ob3N0JnR5cGU9d3Mmc25pPXNuaWhvc3QjbWFpbm5hbWU=";
-	var mtnbase="dmxlc3M6Ly9tYWludWlkQG10bi5saWwtaGVyby5zcGFjZTo0NDM/cGF0aD0lMkZkb3dubG9hZGVyJTJGbWFpbnBvcnQmc2VjdXJpdHk9dGxzJmVuY3J5cHRpb249bm9uZSZob3N0PW1haW5ob3N0JnR5cGU9d3Mmc25pPXNuaWhvc3QjbWFpbm5hbWU=";
-	var adslbase="dmxlc3M6Ly9tYWludWlkQGFkc2wubGlsLWhlcm8uc3BhY2U6NDQzP3BhdGg9JTJGZG93bmxvYWRlciUyRm1haW5wb3J0JnNlY3VyaXR5PXRscyZlbmNyeXB0aW9uPW5vbmUmaG9zdD1tYWluaG9zdCZ0eXBlPXdzJnNuaT1zbmlob3N0I21haW5uYW1l";
-	mcibase=atob(mcibase);
-	mtnbase=atob(mtnbase);
-	adslbase=atob(adslbase);
-	var reuid= new RegExp("vless://(.*)?@");
-	var rehost= new RegExp("vless://.*?@(.*)?:");
-	var report= new RegExp("vless://.*?@.*?:([0-9]{2,5})");
-	var rename=new RegExp("vless://.*?@.*?:[0-9]{2,5}.*#(.*)");
-	
-	//===========================================================
-document.getElementById("sublink").innerHTML = sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[2]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=vless&client=v2ray&name="+encodeURIComponent(inp.match(rename)[1]);
-	
-	mcibase=mcibase.replace("mainname",inp.match(rename)[1]+"%20mci");
-	mtnbase=mtnbase.replace("mainname",inp.match(rename)[1]+"%20mtn");
-	adslbase=adslbase.replace("mainname",inp.match(rename)[1]+"%20adsl");
-	mcibase=mcibase.replace("mainuid",inp.match(reuid)[1]);
-	mtnbase=mtnbase.replace("mainuid",inp.match(reuid)[1]);
-	adslbase=adslbase.replace("mainuid",inp.match(reuid)[1]);
-	mcibase=mcibase.replace("mainport",inp.match(report)[1]);
-	mtnbase=mtnbase.replace("mainport",inp.match(report)[1]);
-	adslbase=adslbase.replace("mainport",inp.match(report)[1]);
-	mcibase=mcibase.replace("mainhost",inp.match(rehost)[1]);
-	mtnbase=mtnbase.replace("mainhost",inp.match(rehost)[1]);
-	adslbase=adslbase.replace("mainhost",inp.match(rehost)[1]);
-	mcibase=mcibase.replace("snihost",randsni+inp.match(rehost)[1]);
-	mtnbase=mtnbase.replace("snihost",randsni+inp.match(rehost)[1]);
-	adslbase=adslbase.replace("snihost",randsni+inp.match(rehost)[1]);
-	
-//++++++++++++++++++++++++++++++++++++++++++
-var sub_link=sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[2]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=vless&client=v2ray&name="+encodeURIComponent(inp.match(rename)[1]);
-    console.log(sub_link);        
-var sub=new QRCode("sub",sub_link+"                                                                                                                                                    ");
-function copysub(){
-var inp =document.createElement('input');
-document.body.appendChild(inp)
-inp.value =sub_link;
-inp.select();
-document.execCommand('copy',false);
-inp.remove();
-}
+        function getPriceChange(currency) {
+            if (!currency?.ps || currency.ps.length < 2) return 0;
+            return currency.ps[0].sp - currency.ps[1].sp;
+        }
 
-	}}
-	if (inp.includes("vless://")) { if (inp.includes("downloader")){
-	var mcibase=inp;
-	var mtnbase=inp;
-	var adslbase=inp;
-	var reuid= new RegExp("vless://(.*)?@");
-	var rehost= new RegExp("vless://.*?@(.*)?:");
-	var report= new RegExp("vless://.*?@.*?:([0-9]{2,5})");
-	var rename=new RegExp("vless://.*?@.*?:[0-9]{2,5}.*#(.*)");
-	
-	//===========================================================
+        function updateDashboard() {
+            // Update currency grid
+            const gridHtml = currencyData.slice(0, 3).map(currency => `
+                <div class="currency-card">
+                    <div class="currency-header">
+                        <div>
+                            <div class="currency-name">${currency.av} ${currency.en}</div>
+                            <div class="currency-persian">${currency.fa}</div>
+                        </div>
+                    </div>
+                    <div class="currency-price">${formatNumber(currency.ps[0].sp)}</div>
+                    <div class="price-change ${getPriceChange(currency) >= 0 ? 'positive' : 'negative'}">
+                        ${getPriceChange(currency) >= 0 ? '▲' : '▼'} 
+                        ${formatNumber(Math.abs(getPriceChange(currency)))}
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('currencyGrid').innerHTML = gridHtml;
 
+            // Update currency selector
+            const selectorHtml = currencyData.map(currency => `
+                <option value="${currency.ab}">${currency.av} ${currency.en}</option>
+            `).join('');
+            document.getElementById('currencySelector').innerHTML = selectorHtml;
 
+            // Update chart for first currency if none selected
+            if (!chart) {
+                updateChart(currencyData[0]);
+            }
+        }
 
+        function updateChart(currency) {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            
+            if (chart) {
+                chart.destroy();
+            }
 
+            const priceData = [...currency.ps].reverse();
+            
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: priceData.map(p => new Date(p.ts).toLocaleTimeString()),
+                    datasets: [
+                        {
+                            label: 'Sell Price',
+                            data: priceData.map(p => p.sp),
+                            borderColor: '#2563eb',
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Buy Price',
+                            data: priceData.map(p => p.bp),
+                            borderColor: '#dc2626',
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: function(value) {
+                                    return formatNumber(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
 
+        // Event listeners
+        document.getElementById('currencySelector').addEventListener('change', (e) => {
+            const selectedCurrency = currencyData.find(c => c.ab === e.target.value);
+            if (selectedCurrency) {
+                updateChart(selectedCurrency);
+            }
+        });
 
+        // Initial load
+        fetchData();
 
-
-
-
-
-
-	//==============================================================
-	
-	
-	//mcibase=mcibase.replace("mainname",inp.match(rename)[1]+"%20mci");
-	//mtnbase=mtnbase.replace("mainname",inp.match(rename)[1]+"%20mtn");
-	//adslbase=adslbase.replace("mainname",inp.match(rename)[1]+"%20adsl");
-	//mcibase=mcibase.replace("mainuid",inp.match(reuid)[1]);
-	//mtnbase=mtnbase.replace("mainuid",inp.match(reuid)[1]);
-	//adslbase=adslbase.replace("mainuid",inp.match(reuid)[1]);
-	mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("adsl","mci");mcibase=mcibase.replace("mci","mci");mcibase=mcibase.replace("mtn","mci");mcibase=mcibase.replace("adsl","mci");
-	mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("adsl","mtn");mtnbase=mtnbase.replace("mci","mtn");mtnbase=mtnbase.replace("mtn","mtn");mtnbase=mtnbase.replace("adsl","mtn");
-	adslbase=adslbase.replace("mci","adsl");adslbase=adslbase.replace("mtn","adsl");adslbase=adslbase.replace("adsl","adsl");adslbase=adslbase.replace("mci","adsl");adslbase=adslbase.replace("mtn","adsl");adslbase=adslbase.replace("adsl","adsl");
-	mcibase=mcibase.replace("hostgozar.space","lil-hero.space");mcibase=mcibase.replace("hostgozar.space","lil-hero.space");mcibase=mcibase.replace("hostgozar.space","lil-hero.space");
-	mtnbase=mtnbase.replace("hostgozar.space","lil-hero.space");mtnbase=mtnbase.replace("hostgozar.space","lil-hero.space");mtnbase=mtnbase.replace("hostgozar.space","lil-hero.space");
-adslbase=adslbase.replace("hostgozar.space","lil-hero.space");adslbase=adslbase.replace("hostgozar.space","lil-hero.space");adslbase=adslbase.replace("hostgozar.space","lil-hero.space");
-	mcibase=mcibase.replace("sni=","sni="+randsni);
-	mtnbase=mtnbase.replace("sni=","sni="+randsni);
-	adslbase=adslbase.replace("sni=","sni="+randsni);
-	
-//++++++++++++++++++++++++++++++++++++++++++
-
-	}}
-	if (inp.includes("trojan://")) {if (!(inp.includes("downloader"))){
-		inp=inp.replace("hostgozar.space","lil-hero.space");inp=inp.replace("hostgozar.space","lil-hero.space");inp=inp.replace("hostgozar.space","lil-hero.space");
-		var mcibase="dHJvamFuOi8vbWFpbnVpZEBtY2kubGlsLWhlcm8uc3BhY2U6NDQzP3BhdGg9JTJGZG93bmxvYWRlciUyRm1haW5wb3J0JnNlY3VyaXR5PXRscyZlbmNyeXB0aW9uPW5vbmUmaG9zdD1tYWluaG9zdCZ0eXBlPXdzJnNuaT1zbmlob3N0I21haW5uYW1l";
-		var mtnbase="dHJvamFuOi8vbWFpbnVpZEBtdG4ubGlsLWhlcm8uc3BhY2U6NDQzP3BhdGg9JTJGZG93bmxvYWRlciUyRm1haW5wb3J0JnNlY3VyaXR5PXRscyZlbmNyeXB0aW9uPW5vbmUmaG9zdD1tYWluaG9zdCZ0eXBlPXdzJnNuaT1zbmlob3N0I21haW5uYW1l";
-		var adslbase="dHJvamFuOi8vbWFpbnVpZEBhZHNsLmxpbC1oZXJvLnNwYWNlOjQ0Mz9wYXRoPSUyRmRvd25sb2FkZXIlMkZtYWlucG9ydCZzZWN1cml0eT10bHMmZW5jcnlwdGlvbj1ub25lJmhvc3Q9bWFpbmhvc3QmdHlwZT13cyZzbmk9c25paG9zdCNtYWlubmFtZQ==";
-		mcibase=atob(mcibase);
-		mtnbase=atob(mtnbase);
-		adslbase=atob(adslbase);
-		var reuid= new RegExp("trojan://(.*)?@");
-		var rehost= new RegExp("trojan://.*?@(.*)?:");
-		var report= new RegExp("trojan://.*?@.*?:([0-9]{2,5})");
-		var rename=new RegExp("trojan://.*?@.*?:[0-9]{2,5}.*#(.*)");
-		
-		//===========================================================
-	document.getElementById("sublink").innerHTML = sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[2]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=trojan&client=v2ray&name="+encodeURIComponent(inp.match(rename)[1]);
-		
-		mcibase=mcibase.replace("mainname",inp.match(rename)[1]+"%20mci");
-		mtnbase=mtnbase.replace("mainname",inp.match(rename)[1]+"%20mtn");
-		adslbase=adslbase.replace("mainname",inp.match(rename)[1]+"%20adsl");
-		mcibase=mcibase.replace("mainuid",inp.match(reuid)[1]);
-		mtnbase=mtnbase.replace("mainuid",inp.match(reuid)[1]);
-		adslbase=adslbase.replace("mainuid",inp.match(reuid)[1]);
-		mcibase=mcibase.replace("mainport",inp.match(report)[1]);
-		mtnbase=mtnbase.replace("mainport",inp.match(report)[1]);
-		adslbase=adslbase.replace("mainport",inp.match(report)[1]);
-		mcibase=mcibase.replace("mainhost",inp.match(rehost)[1]);
-		mtnbase=mtnbase.replace("mainhost",inp.match(rehost)[1]);
-		adslbase=adslbase.replace("mainhost",inp.match(rehost)[1]);
-		mcibase=mcibase.replace("snihost",randsni+inp.match(rehost)[1]);
-		mtnbase=mtnbase.replace("snihost",randsni+inp.match(rehost)[1]);
-		adslbase=adslbase.replace("snihost",randsni+inp.match(rehost)[1]);
-		
-	//++++++++++++++++++++++++++++++++++++++++++
-        var sub_link=sub_addr+"uid="+inp.match(reuid)[1]+"&p1="+inp.match(rehost)[1].split(".")[1]+"&sport="+inp.match(report)[1]+"&p2="+inp.match(rehost)[1].split(".")[2]+"&nport=443&saddr="+inp.match(rehost)[1].split(".")[0]+"&spath=downloader&type=trojan&client=v2ray&name="+encodeURIComponent(inp.match(rename)[1]);
-        console.log(sub_link);        
-var sub=new QRCode("sub",sub_link+"                                                                                                                                                      ");
-function copysub(){
-var inp =document.createElement('input');
-document.body.appendChild(inp)
-inp.value =sub_link;
-inp.select();
-document.execCommand('copy',false);
-inp.remove();
-}
-		}}
-	</script>
+        // Refresh data every minute
+        setInterval(fetchData, 60000);
+    </script>
 </body>
- 
 </html>
